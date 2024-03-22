@@ -1,0 +1,91 @@
+header>nav ul>li {
+  padding: 6px 11px;
+}
+
+header>nav ul>li>h4 {
+  font-family: var(--nav-font-family);
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight);
+  transition: font-weight 225ms ease-in-out 0s;
+  color: rgb(0, 0, 0);
+}
+
+header>nav ul>li>h4 a::before {
+  display: block;
+  content: attr(title);
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+header > nav ul > li > h4 > a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  position: relative;
+}
+
+header > nav ul > li > h4 > a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+header > nav ul > li > h4 > a:hover::after {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+header > nav ul > li > h4 > a:hover {
+  font-weight: 700;
+  transition: font-weight 225ms ease-in-out 0s;
+}
+
+/* header>nav ul>li>h4::after {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 1px;
+    transition: width 225ms ease-in-out 0s, background-color 225ms ease-in-out 0s;
+    margin: 3px auto 0px;
+} */
+
+header>nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+header > nav ul > li > ul {
+  display: none;
+}
+
+/*header nav ul > li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: red;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+header nav ul > li a:hover {
+  color: blue;
+}
+
+header nav ul > li a:hover::after,
+a:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+} */
