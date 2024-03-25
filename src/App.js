@@ -4,11 +4,18 @@ import { AppContext } from './utils/context';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { ErrorBoundary } from 'react-error-boundary';
 import Screen from './components/screen';
+import { useGraphQL } from './utils/useGraphQL';
 
 import './App.css';
 
 function App() {
   const context = useContext(AppContext);
+  const persistentQuery = 'headless/configuration';
+  const { data, errorMessage } = useGraphQL(persistentQuery, { project: `/content/dam/${context.project}/configuration` });
+
+  if(data) {
+    context.commerceSheet = data.configurationByPath.item.commerceSheet;
+  }
 
   return (
     <HelmetProvider>
