@@ -15,7 +15,7 @@ const Screen = () => {
   const context = useContext(AppContext);
   const [title, setTitle] = useState('');
  
-  const persistentQuery = 'headless/screen';
+  const persistentQuery = 'screen';
 
   const { data, errorMessage } = useGraphQL(persistentQuery, { tags: 'shopbop:location/home' });
 
@@ -40,7 +40,7 @@ const Screen = () => {
         <title>Shopbop {title}</title>
       </Helmet>
       <header>
-        <Navigation />
+        <Navigation key='navigation' />
       </header>
 
       {data && data.screenList.items.map((item) => (

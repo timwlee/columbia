@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Image from '../image';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../utils/context';
-import './banner.css';
+import { mapJsonRichText } from '../../utils/renderRichText';
+import './imagelist.css';
 
 const imageSizes = [
   {
@@ -35,25 +36,32 @@ const imageSizes = [
   }
 ];
 
-const Banner = ({ content }) => {
+const ImageList = ({ content }) => {
   const imageProps = {
-    'data-aue-prop':'asset',
-    'data-aue-type':'media',
-    'data-aue-label':'Asset'
+    'data-aue-prop': 'asset',
+    'data-aue-type': 'media',
+    'data-aue-label': 'Asset'
   };
 
   return (
-    <div className='banner'>
-      <Image imageProps={imageProps} asset={content.asset} alt={content.title} imageSizes={imageSizes} />  
+    <div className='imagelist'>
+      {mapJsonRichText(content?.headline?.json)}
+      <span class='list-items'>
+        {content.images && content.images.map((image) => (
+          <div key={image._path} className='list-item'>
+            <Image imageProps={imageProps} asset={image} title={image.title} alt={image.description} imageSizes={imageSizes} />
+          </div>
+        ))}
+      </span>
     </div>
   );
 };
 
-Banner.propTypes = {
+ImageList.propTypes = {
   content: PropTypes.object
 };
 
-export default Banner;
+export default ImageList;
 
 
 //https://author-p124331-e1227315.adobeaemcloud.com/content/dam/amazon/assets/products/ullaj2263510687_1709571240895_2-0-_QL90_UX282_.jpg/_jcr_content/renditions/original?ch_ck=1711387638000

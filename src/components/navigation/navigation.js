@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../utils/context';
+import React, { useState } from 'react';
 import { useGraphQL } from '../../utils/useGraphQL';
 import Loading from '../loading';
+import Panel from '../panel';
+
 import './navigation.css';
 
 const Navigation = () => {
-  const context = useContext(AppContext);
-  const persistentQuery = 'headless/navigation';
+  const [panel, setPanel] = useState(null);
+  const [style, setStyle] = useState('');
+  
+  const persistentQuery = 'navigation';
   const { data, errorMessage } = useGraphQL(persistentQuery);
 
   if (errorMessage) return;
@@ -18,15 +21,50 @@ const Navigation = () => {
   }
 
   const changeHTML = (element) => {
-    const doc = new DOMParser().parseFromString(element, 'text/html');
-    doc.querySelectorAll('a').forEach((href) => href.setAttribute('title', href.textContent));
-    return doc.body.innerHTML;
+    const div = document.createElement('div');
+    div.innerHTML = element;
+    const ul = div.querySelector('ul');
+    let i = 0;
+    const ret = [...ul.children].map((li) => {
+
+      const anchor = li.querySelector('a');
+      let NewAnchor = '';
+      if (anchor) {
+        const dataPanel = anchor.textContent.replace('\'', '').replace(' ', '-').toLowerCase();
+        [...li.childNodes].forEach((item) => {
+          if (item.nodeName != '#text') {
+            [...item.childNodes].forEach(({ nodeName, textContent, href }) => {
+              const TagName = nodeName;
+              console.log(TagName);
+              const ParentName = `${item.nodeName}`;
+              NewAnchor = <ParentName key={dataPanel}>
+                <TagName href={href} title={dataPanel}
+                  onMouseEnter={(e) => {setPanel(dataPanel);setStyle('show');}} 
+                  onMouseLeave={(e) => {setStyle('');}} data-panel={dataPanel}>{textContent}</TagName></ParentName>;
+
+            });
+          }
+
+        });
+      }
+      if (anchor)
+        return (<li key={i++}>{NewAnchor}</li>);
+      return (<li key={i++} dangerouslySetInnerHTML={{ __html: li.innerHTML }} />);
+    });
+
+    return ret;
   };
+  
   return (
     <nav>
       {navs && navs.map((nav) => (
-        <div className='navigation' role='menubar' key={nav._path} dangerouslySetInnerHTML={{ __html: changeHTML(nav.navigationItems.html) }}></div>
+        <div className='navigation' role='menubar' key={nav._path}>
+          <ul>
+            {changeHTML(nav.navigationItems.html)}
+          </ul>
+        </div>
       ))}
+      <Panel style={style} panel={panel} />
     </nav>
   );
 };

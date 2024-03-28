@@ -27,7 +27,7 @@ export function useGraphQL(path, params = {}) {
       });
       const request = sdk.runPersistedQuery.bind(sdk);
 
-      request(path, params, { credentials: 'include' })
+      request(`headless/${path}`, params, { credentials: 'include' })
         .then(({ data, errors }) => {
           //If there are errors in the response set the error message
           if (errors) {
@@ -42,9 +42,13 @@ export function useGraphQL(path, params = {}) {
           setErrors(error);
         });
     }
+    console.log(Object.prototype.hasOwnProperty.call(context, path));
+    if (Object.prototype.hasOwnProperty.call(context, path) && Object.keys(context[path]).length > 0) {
+      setData(context[path]);
+    } else
+      makeRequest();
 
-    makeRequest();
-  }, [path]);
+  }, [path, context]);
 
 
   return { data, errorMessage };

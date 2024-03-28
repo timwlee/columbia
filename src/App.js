@@ -3,12 +3,26 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppContext } from './utils/context';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { ErrorBoundary } from 'react-error-boundary';
+import Error from './components/error';
 import Screen from './components/screen';
+import { useGraphQL } from './utils/useGraphQL';
+import Loading from './components/loading';
 
 import './App.css';
 
 function App() {
   const context = useContext(AppContext);
+  const persistentQuery = 'configuration';
+  const { data, errorMessage } = useGraphQL(persistentQuery, { project: `/content/dam/${context.project}/configuration` });
+
+  if (errorMessage) throw new Error(errorMessage);
+
+  if (!data) return <Loading />;
+
+
+  if (data) {
+    context.commerceSheet = data.configurationByPath.item.commerceSheet;
+  }
 
   return (
     <HelmetProvider>
@@ -18,14 +32,14 @@ function App() {
         </Helmet>
         <BrowserRouter>
           <Routes>
-            <Route exact={true} path={'/'} element={<Screen/>}>
-              {/* <ErrorBoundary
+            <Route exact={true} path={'/'} element={
+              <ErrorBoundary
                 FallbackComponent={Error}
                 onReset={() => {
                   console.log('reset');
-                }}> */}
-             
-              {/* </ErrorBoundary> */}
+                }}>
+                <Screen />
+              </ErrorBoundary>}>
             </Route>
           </Routes>
         </BrowserRouter>

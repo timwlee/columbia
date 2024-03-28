@@ -9,4 +9,7 @@ export const AppContext = createContext({
   endpoint: localStorage.endpoint || defaultEndpoint,
   project: localStorage.project || defaultProject,
   serviceURL: localStorage.serviceURL || defaultServiceURL,
+  commerceSheet: '',
+  panels: {},
+  navigation: {}
 });

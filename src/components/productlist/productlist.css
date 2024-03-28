@@ -1,0 +1,14 @@
+.main-body > .productlist {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-body > .productlist > .list-items {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-body > .productlist > .list-items > .list-item {
+  display: flex;
+  flex-direction: column;
+}
