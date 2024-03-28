@@ -1,0 +1,36 @@
+header > nav > .panel {
+  position: absolute;
+  background-color: #F8F7F7;
+  width: 100%;
+  margin-top: -26px;
+  display: none;
+}
+
+header > nav > .panel.show {
+  display: flex;
+  flex-direction: row;
+}
+
+header > nav > .panel span {
+  display: flex;
+  flex-direction: row;
+}
+
+header > nav > .panel ul {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+header > nav > .panel li > b, header > nav > .panel li > a {
+  font-family: var(--nav-font-family);
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight-bold);
+  transition: font-weight 225ms ease-in-out 0s;
+  color: rgb(0, 0, 0);
+}
+
+header > nav > .panel li > a {
+  font-weight: var(--nav-font-weight);
+  text-decoration: none;
+}

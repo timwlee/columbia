@@ -1,8 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Image from '../image';
-import { Link } from 'react-router-dom';
-import { AppContext } from '../../utils/context';
 import { mapJsonRichText } from '../../utils/renderRichText';
 import './productlist.css';
 
@@ -37,8 +34,7 @@ const imageSizes = [
 ];
 
 const ProductList = ({ content }) => {
-  const context = useContext(AppContext);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
 
   const imageProps = {
     'data-aue-prop': 'asset',
@@ -48,37 +44,42 @@ const ProductList = ({ content }) => {
 
   useEffect(() => {
     fetch('https://main--cif--jihuang-adobe.hlx.page/products.json?sheet=shopbot').then((res) => {
-      if(res) {
+      if (res) {
         res.json().then((json) => setProducts(json.data));
       }
+    }).catch((error) => {
+      throw (error);
     });
-  },[]);
+  }, []);
 
   const findProduct = (product, sku) => {
     return product.product_sku === sku;
   };
 
   const retrieveProduct = (sku) => {
-    console.log(products);
+    if (!products) return;
     const product = products.find((item) => findProduct(item, sku));
-    console.log(product);
-    Object.values(product).map((v) => console.log(v));
-    return product.product_name;
+
+    return (
+      <React.Fragment>
+        <img src={product.category_image} />
+        <span className='product-name'>{product.product_name}</span>
+        <span className='product-description'>{product.product_description}</span>
+        <span className='product-price'>{product.product_price}</span>
+      </React.Fragment>
+    );
   };
-
-  //tops-farm-rio-FARMR30842
-
-  // if(products) console.log(products.find((product) => findProduct(product, 'tops-farm-rio-FARMR30842')));
-  if(products) console.log(retrieveProduct('tops-farm-rio-FARMR30842'));
 
   return (
     <div className='productlist'>
       {mapJsonRichText(content?.headline?.json)}
-      {content.products && content.products.map((product) => (
-        <div key={product} className='list-item'>
-          {retrieveProduct(product)}
-        </div>
-      ))}
+      <span className='list-items'>
+        {products && content.products && content.products.map((product) => (
+          <div key={product} className='list-item'>
+            {retrieveProduct(product)}
+          </div>
+        ))}
+      </span>
     </div>
   );
 };

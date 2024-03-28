@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import Image from '../image';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../utils/context';
+import { useGraphQL } from '../../utils/useGraphQL';
+import Loading from '../loading';
+import './panel.css';
 import { mapJsonRichText } from '../../utils/renderRichText';
-import './imagelist.css';
 
 const imageSizes = [
   {
@@ -36,7 +38,19 @@ const imageSizes = [
   }
 ];
 
-const ImageList = ({ content }) => {
+const Panel = ({ style, panel }) => {
+  const persistentQuery = 'panels';
+  const { data, errorMessage } = useGraphQL(persistentQuery);
+
+  if (errorMessage) return;
+
+  if (!data) return <Loading />;
+  const panels = data.panelList.items.filter((p) => {
+    if (p.slug === panel) return p;
+  });
+
+  console.log(panels);
+
   const imageProps = {
     'data-aue-prop': 'asset',
     'data-aue-type': 'media',
@@ -44,24 +58,29 @@ const ImageList = ({ content }) => {
   };
 
   return (
-    <div className='imagelist'>
-      {mapJsonRichText(content?.headline?.json)}
-      <span class='list-items'>
-        {content.images && content.images.map((image) => (
-          <div key={image._path} className='list-item'>
-            <Image imageProps={imageProps} asset={image} title={image.title} alt={image.description} imageSizes={imageSizes} />
-          </div>
+    <div className={`panel ${style}`}>
+      <div className='panel-left'>
+
+        {panels.map((p) => (
+          <span key={p.slug} dangerouslySetInnerHTML={{__html:p.links.html}} />
         ))}
-      </span>
+
+      </div>
+      <div className='panel-right'>
+        {panels.map((p) => (
+          <Image key={p.slug} imageProps={imageProps} asset={p.asset} title={p.title} alt={p.description} imageSizes={imageSizes} />
+        ))}
+      </div>
     </div>
   );
 };
 
-ImageList.propTypes = {
-  content: PropTypes.object
+Panel.propTypes = {
+  panel: PropTypes.string,
+  style: PropTypes.string
 };
 
-export default ImageList;
+export default Panel;
 
 
 //https://author-p124331-e1227315.adobeaemcloud.com/content/dam/amazon/assets/products/ullaj2263510687_1709571240895_2-0-_QL90_UX282_.jpg/_jcr_content/renditions/original?ch_ck=1711387638000

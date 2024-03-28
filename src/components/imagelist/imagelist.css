@@ -1,0 +1,9 @@
+.main-body > .imagelist {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-body > .imagelist > .list-items {
+  display: flex;
+  flex-direction: row;
+}
