@@ -10,17 +10,26 @@ export const componentMapping = {
   ProductList
 };
 
-const ModelManager = ({ content }) => {
+const ModelManager = ({ content, dataAueProp }) => {
   const { title } = content._model;
+  const editorProps = {
+    'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/${content._variation}`,
+    'data-aue-type': 'reference',
+    'data-aue-label': title,
+    'data-aue-model': content?._model?._path,
+    'data-aue-behavior': 'component',
+    'data_aue-prop': dataAueProp
+  };
   const Component = componentMapping[title.replace(' ', '')];
  
   if (typeof Component !== 'undefined')
-    return <Component content={content}/>;
+    return <Component editorProps={editorProps} content={content}/>;
   else return <p>Neet to add {title} to ModelManager.</p>;
 };
 
 ModelManager.propTypes = {
-  content: PropTypes.object
+  content: PropTypes.object,
+  dataAueProp: PropTypes.string
 };
 
 export default ModelManager;

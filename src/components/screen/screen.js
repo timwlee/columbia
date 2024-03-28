@@ -23,15 +23,11 @@ const Screen = () => {
 
   if (!data) return <Loading />;
 
-
-
   let i = 0;
 
   const editorProps = {
-    'data-aue-prop': 'block',
     'data-aue-type': 'container',
     'data-aue-filter': 'screen',
-    'data-aue-label': 'Screen'
   };
 
   return (
@@ -44,16 +40,16 @@ const Screen = () => {
       </header>
 
       {data && data.screenList.items.map((item) => (
-        <div key={item.path} className='main-body' {...editorProps} data-aue-resource={`urn:aemconnection:${item.path}/jcr:content/data/master`}>
-          <Banner content={item.hero} />
+        <div key={item.path} className='main-body' {...editorProps} 
+          data-aue-label={item._model.title} 
+          data-aue-model={item._model._path}
+          data-aue-resource={`urn:aemconnection:${item._path}/jcr:content/data/${item._variation}`}>
+          <ModelManager key={item.path} content={item.hero} dataAueProp='hero'></ModelManager>
           {item && item.blocks.map((block) => (
             <Delayed key={block._path} waitBeforeShow={200}>
-              <ModelManager
-                content={block}
-              ></ModelManager>
+              <ModelManager dataAueProp='block' content={block}></ModelManager>
             </Delayed>
           ))}
-
         </div>
       ))}
       <footer>

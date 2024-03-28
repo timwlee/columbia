@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   const context = useContext(AppContext);
   const persistentQuery = 'configuration';
-  const { data, errorMessage } = useGraphQL(persistentQuery, { project: `/content/dam/${context.project}/configuration` });
+  const { data, errorMessage } = useGraphQL(persistentQuery, { project: `${context.project}/configuration` });
 
   if (errorMessage) throw new Error(errorMessage);
 
@@ -24,11 +24,14 @@ function App() {
     context.commerceSheet = data.configurationByPath.item.commerceSheet;
   }
 
+  let {serviceURL} = context;
+  serviceURL = serviceURL.endsWith('/') ? serviceURL.slice(0, -1) : serviceURL;
+  
   return (
     <HelmetProvider>
       <div className='App'>
         <Helmet>
-          <meta name='urn:adobe:aue:system:aemconnection' content={`aem:${context.serviceURL}`} />
+          <meta name='urn:adobe:aue:system:aemconnection' content={`aem:${serviceURL}`} />
         </Helmet>
         <BrowserRouter>
           <Routes>

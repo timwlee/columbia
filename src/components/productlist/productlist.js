@@ -33,7 +33,7 @@ const imageSizes = [
   }
 ];
 
-const ProductList = ({ content }) => {
+const ProductList = ({ content, editorProps }) => {
   const [products, setProducts] = useState(null);
 
   const imageProps = {
@@ -71,7 +71,7 @@ const ProductList = ({ content }) => {
   };
 
   return (
-    <div className='productlist'>
+    <div className='productlist' {...editorProps}>
       {mapJsonRichText(content?.headline?.json)}
       <span className='list-items'>
         {products && content.products && content.products.map((product) => (
@@ -85,7 +85,8 @@ const ProductList = ({ content }) => {
 };
 
 ProductList.propTypes = {
-  content: PropTypes.object
+  content: PropTypes.object,
+  editorProps: PropTypes.object
 };
 
 export default ProductList;
