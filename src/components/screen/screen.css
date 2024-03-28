@@ -97,6 +97,10 @@
   font-style: normal
 }
 
+.main-body {
+  max-width: 1496px;
+}
+
 :root {
   --font-family: GTAmerica, "Helvetica Neue", Helvetica, sans-serif;
 

@@ -36,7 +36,7 @@ const imageSizes = [
   }
 ];
 
-const ImageList = ({ content }) => {
+const ImageList = ({ content, editorProps }) => {
   const imageProps = {
     'data-aue-prop': 'asset',
     'data-aue-type': 'media',
@@ -44,7 +44,7 @@ const ImageList = ({ content }) => {
   };
 
   return (
-    <div className='imagelist'>
+    <div className='imagelist' {...editorProps}>
       {mapJsonRichText(content?.headline?.json)}
       <span class='list-items'>
         {content.images && content.images.map((image) => (
@@ -58,7 +58,8 @@ const ImageList = ({ content }) => {
 };
 
 ImageList.propTypes = {
-  content: PropTypes.object
+  content: PropTypes.object,
+  editorProps: PropTypes.object
 };
 
 export default ImageList;

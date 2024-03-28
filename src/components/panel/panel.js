@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Image from '../image';
-import { Link } from 'react-router-dom';
-import { AppContext } from '../../utils/context';
 import { useGraphQL } from '../../utils/useGraphQL';
 import Loading from '../loading';
 import './panel.css';
-import { mapJsonRichText } from '../../utils/renderRichText';
 
 const imageSizes = [
   {
@@ -48,8 +45,6 @@ const Panel = ({ style, panel }) => {
   const panels = data.panelList.items.filter((p) => {
     if (p.slug === panel) return p;
   });
-
-  console.log(panels);
 
   const imageProps = {
     'data-aue-prop': 'asset',

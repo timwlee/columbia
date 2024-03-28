@@ -34,13 +34,12 @@ const Navigation = () => {
         [...li.childNodes].forEach((item) => {
           if (item.nodeName != '#text') {
             [...item.childNodes].forEach(({ nodeName, textContent, href }) => {
-              const TagName = nodeName;
-              console.log(TagName);
-              const ParentName = `${item.nodeName}`;
+              const TagName = nodeName.toLowerCase();
+              const ParentName = `${item.nodeName.toLowerCase()}`;
               NewAnchor = <ParentName key={dataPanel}>
                 <TagName href={href} title={dataPanel}
-                  onMouseEnter={(e) => {setPanel(dataPanel);setStyle('show');}} 
-                  onMouseLeave={(e) => {setStyle('');}} data-panel={dataPanel}>{textContent}</TagName></ParentName>;
+                  onMouseEnter={() => {setPanel(dataPanel);setStyle('show');}} 
+                  onMouseLeave={() => {setStyle('');}} data-panel={dataPanel}>{textContent}</TagName></ParentName>;
 
             });
           }

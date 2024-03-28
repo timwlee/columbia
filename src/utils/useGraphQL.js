@@ -42,7 +42,7 @@ export function useGraphQL(path, params = {}) {
           setErrors(error);
         });
     }
-    console.log(Object.prototype.hasOwnProperty.call(context, path));
+    
     if (Object.prototype.hasOwnProperty.call(context, path) && Object.keys(context[path]).length > 0) {
       setData(context[path]);
     } else

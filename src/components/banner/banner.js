@@ -35,22 +35,24 @@ const imageSizes = [
   }
 ];
 
-const Banner = ({ content }) => {
+const Banner = ({ content, editorProps }) => {
   const imageProps = {
     'data-aue-prop':'asset',
     'data-aue-type':'media',
     'data-aue-label':'Asset'
   };
 
+  console.log(editorProps);
   return (
-    <div className='banner'>
+    <div className='banner' {...editorProps}>
       <Image imageProps={imageProps} asset={content.asset} alt={content.title} imageSizes={imageSizes} />  
     </div>
   );
 };
 
 Banner.propTypes = {
-  content: PropTypes.object
+  content: PropTypes.object,
+  editorProps: PropTypes.object
 };
 
 export default Banner;
