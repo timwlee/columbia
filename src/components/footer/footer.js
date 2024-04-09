@@ -1,15 +1,14 @@
+import React from 'react';
 import './footer.css';
 
-export default Footer = () => {
-    return (
-        <footer className="footer">
-            <div className="footer-content-wrapper">  
+const Footer = () => {
+  return (
+    <footer className='footer'>
+      <div className='footer-content-wrapper'>
+        © 1999-2024 BOP LLC. All Rights Reserved.
+      </div>
+    </footer>
+  );
+};
 
-            </div>
-        </footer>
-      );
-}
-
-
-
-
+export default Footer;

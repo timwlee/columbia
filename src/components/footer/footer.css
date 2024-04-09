@@ -1,7 +1,9 @@
 .footer {
     background: rgb(248, 247, 247);
+    margin-top: 40px;
 }
 
 .footer > .footer-content-wrapper {
-    margin-top: 40px;
+    padding: 40px 0;
+    font-size: 0.7rem;
 }
