@@ -1,6 +1,7 @@
 .main-body > .imagelist {
-  display: flex;
+  display: grid;
   flex-direction: column;
+  border: dashed 2px fuchsia;
 }
 
 .main-body > .imagelist > .list-items {
