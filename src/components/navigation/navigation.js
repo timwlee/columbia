@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useGraphQL } from '../../utils/useGraphQL';
 import Loading from '../loading';
 import Panel from '../panel';
+import ColumbiaLogo from '../../media/columbia-logo.png';
+import ShoppingBagIcon from '../../media/shopping-bag-icon.svg';
+import UserAccountIcon from '../../media/user-account-icon-1.svg';
+import SearchIcon from '../../media/search-icon.svg';
 
 import './navigation.css';
 
@@ -56,13 +60,37 @@ const Navigation = () => {
   
   return (
     <nav>
-      {navs && navs.map((nav) => (
-        <div className='navigation' role='menubar' key={nav._path}>
-          <ul>
-            {changeHTML(nav.navigationItems.html)}
-          </ul>
+      <div className='nav-container'>
+        {/* Hardcoded */}
+        <div className='nav-logo'>
+          <img src={ColumbiaLogo} alt='Columbia Logo' title='Columbia' />
         </div>
-      ))}
+        {/* Hardcoded */}
+
+        {navs && navs.map((nav) => (
+          <div className='navigation' role='menubar' key={nav._path}>
+            <ul>
+              {changeHTML(nav.navigationItems.html)}
+            </ul>
+          </div>
+        ))}
+
+        {/* Hardcoded */}
+        <div className='nav-options'>
+          <div className='nav-search option'>
+            <img src={SearchIcon} alt='Search Icon'/>
+            <input type='search' placeholder='Search' autoComplete='off' aria-label='Search' value=''/>
+          </div>
+          <div className='option'>
+            <img src={UserAccountIcon} alt='User Account Icon'/>
+          </div>
+          <div className='option'>
+            <img src={ShoppingBagIcon} alt='Shopping Bag Icon'/>
+          </div>
+        </div>
+        {/* Hardcoded */}
+      </div>
+      
       <Panel style={style} panel={panel} />
     </nav>
   );

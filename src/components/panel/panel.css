@@ -1,14 +1,16 @@
 header > nav > .panel {
   position: absolute;
-  background-color: #F8F7F7;
+  background-color: var(--background-white);
   width: 100%;
-  margin-top: -26px;
+  margin-top: 0;
   display: none;
 }
 
 header > nav > .panel.show {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  padding: 1rem;
 }
 
 header > nav > .panel span {
@@ -20,6 +22,7 @@ header > nav > .panel ul {
   display: flex;
   flex-direction: column;
   text-align: left;
+  padding: 0 2.5rem;
 }
 
 header > nav > .panel li > b, header > nav > .panel li > a {

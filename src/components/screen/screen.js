@@ -34,7 +34,7 @@ const Screen = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Shopbop {title}</title>
+        <title>Columbia {title}</title>
       </Helmet>
       <header>
         <Navigation key='navigation' />
