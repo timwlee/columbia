@@ -61,9 +61,12 @@ const Navigation = () => {
   return (
     <nav>
       <div className='nav-container'>
+        {/* Hardcoded */}
         <div className='nav-logo'>
           <img src={ColumbiaLogo} alt='Columbia Logo' title='Columbia' />
         </div>
+        {/* Hardcoded */}
+
         {navs && navs.map((nav) => (
           <div className='navigation' role='menubar' key={nav._path}>
             <ul>
@@ -71,6 +74,8 @@ const Navigation = () => {
             </ul>
           </div>
         ))}
+
+        {/* Hardcoded */}
         <div className='nav-options'>
           <div className='nav-search option'>
             <img src={SearchIcon} alt='Search Icon'/>
@@ -83,7 +88,9 @@ const Navigation = () => {
             <img src={ShoppingBagIcon} alt='Shopping Bag Icon'/>
           </div>
         </div>
+        {/* Hardcoded */}
       </div>
+      
       <Panel style={style} panel={panel} />
     </nav>
   );
