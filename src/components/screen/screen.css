@@ -98,12 +98,12 @@
 }
 
 .main-body {
-  max-width: 1496px;
+  max-width: 1480px;
+  margin: 0 auto;
 }
 
 :root {
   --font-family: GTAmerica, "Helvetica Neue", Helvetica, sans-serif;
-
 
   /* navigation */
   --nav-font-family: var(--font-family);
