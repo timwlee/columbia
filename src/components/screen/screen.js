@@ -6,6 +6,7 @@ import { AppContext } from '../../utils/context';
 import { Helmet } from 'react-helmet-async';
 import Delayed from '../../utils/delayed';
 import Navigation from '../navigation';
+import Footer from '../footer';
 import { useGraphQL } from '../../utils/useGraphQL';
 import Loading from '../loading';
 import Banner from '../../components/banner';
@@ -52,9 +53,7 @@ const Screen = () => {
           ))}
         </div>
       ))}
-      <footer>
-
-      </footer>
+      <Footer />
     </React.Fragment>
   );
 };
