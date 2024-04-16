@@ -1,3 +1,13 @@
+header {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-white);
+}
+
+header nav ul {
+  margin: 0;
+}
+
 header>nav ul>li {
   padding: 6px 11px;
   position: relative;
@@ -9,6 +19,7 @@ header>nav ul>li>h4 {
   font-weight: var(--nav-font-weight);
   transition: font-weight 225ms ease-in-out 0s;
   color: rgb(0, 0, 0);
+  margin: 1rem 0;
 }
 
 header>nav ul>li>h4 a::before {
@@ -40,54 +51,66 @@ header > nav ul > li > h4 > a::after {
   transition: transform 0.25s ease-out;
 }
 
-header > nav ul > li > h4 > a:hover::after {
-  transform: scaleX(1);
-  transform-origin: center;
-}
-
 header > nav ul > li > h4 > a:hover {
-  font-weight: 700;
-  transition: font-weight 225ms ease-in-out 0s;
+  text-decoration: underline;
 }
-
-/* header>nav ul>li>h4::after {
-    content: "";
-    display: block;
-    width: 0px;
-    height: 1px;
-    transition: width 225ms ease-in-out 0s, background-color 225ms ease-in-out 0s;
-    margin: 3px auto 0px;
-} */
 
 header>nav ul {
   display: flex;
   flex-direction: row;
   list-style: none;
   max-width: 100%;
+  padding-left: 1rem;
 }
 
 header > nav ul > li > ul {
   display: none;
 }
 
-/*header nav ul > li a::after {
-  content: '';
+header > nav .nav-container {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+}
+
+header > nav .nav-container .nav-logo img {
+  width: 115px;
+  height: 20px;
+}
+
+header > nav .nav-container .nav-options {
+  margin-left: auto;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+header > nav .nav-container .nav-options input[type='search'] {
+  border-radius: 1.25rem;
+  padding: 0.375rem 0.625rem 0.375rem 2.25rem;
+  font-size: 0.875rem;
+  border: none;
+  background-color: var(--background-grey);
+}
+
+header > nav .nav-container .nav-options input[type='search']:focus,
+header > nav .nav-container .nav-options input[type='search']:focus-visible {
+  outline: none;
+}
+
+header > nav .nav-container .nav-options .option img {
+  width: 20px;
+  height: 20px;
+}
+
+header > nav .nav-container .nav-options .nav-search.option {
+  position: relative;
+}
+
+header > nav .nav-container .nav-options .nav-search.option img {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.1em;
-  background-color: red;
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
+  top: 4px;
+  left: 5px;
 }
-
-header nav ul > li a:hover {
-  color: blue;
-}
-
-header nav ul > li a:hover::after,
-a:focus::after {
-  opacity: 1;
-  transform: translate3d(0, 0.2em, 0);
-} */
