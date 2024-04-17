@@ -1,0 +1,60 @@
+.fifty-fifty {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.fifty-fifty .container {
+  flex: 1;
+  color: var(--color-white);
+}
+
+.fifty-fifty .container.media img {
+  width: 100%;
+  height: 100%;
+}
+
+.fifty-fifty .container.description {
+  background-color: #2B5663;
+}
+
+.fifty-fifty .container.description .wrapper {
+  padding: 1rem 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.fifty-fifty .container.description img {
+  width: 220px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.fifty-fifty .container.description h3 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.fifty-fifty .container.description div {
+  font-weight: 16px;
+  font-weight: 400;
+}
+
+.fifty-fifty .container.description a {
+  color: var(--color-black);
+  text-decoration: none;
+  text-transform: capitalize;
+  padding: .75rem 3rem;
+  font-size: .75rem;
+  line-height: .9;
+  border-radius: 3.125rem;
+  background-color: var(--color-white);
+  font-weight: 700;
+}
