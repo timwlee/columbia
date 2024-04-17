@@ -4,12 +4,16 @@ import Banner from '../components/banner/';
 import ImageList from '../components/imagelist';
 import ProductList from '../components/productlist';
 import Teaser from '../components/teaser/teaser';
+import CollectionsCarousel from '../components/collections-carousel/collections-carousel';
+import CTAList from '../components/ctalist/ctalist';
 
 export const componentMapping = {
   Banner,
   ImageList,
   ProductList,
-  Teaser
+  Teaser,
+  CollectionsCarousel,
+  CTAList
 };
 
 const ModelManager = ({ content, dataAueProp }) => {
