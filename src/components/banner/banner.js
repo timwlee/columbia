@@ -4,6 +4,7 @@ import Image from '../image';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../utils/context';
 import './banner.css';
+import HeroImage from '../../media/hero-image.jpeg';
 
 const imageSizes = [
   {
@@ -42,10 +43,21 @@ const Banner = ({ content, editorProps }) => {
     'data-aue-label':'Asset'
   };
 
-  console.log(editorProps);
   return (
     <div className='banner' {...editorProps}>
-      <Image imageProps={imageProps} asset={content.asset} alt={content.title} imageSizes={imageSizes} />  
+      <div className='wrapper'>
+        <img src={HeroImage} alt='Hero Image'/>
+        {/* <Image imageProps={imageProps} asset={content.asset} alt={content.title} imageSizes={imageSizes} />   */}
+        <div className='content-container'>
+          <div className='content-column'>
+            <div className='main-content'>
+              <h1>New Arrivals</h1>
+              <p>From cool-weather layers to sun-worthy styles, you&lsquo;ll be ready for anything.</p>
+              <a href='https://www.columbia.com/c/new-arrivals/?icpa=hp&icid=hero&icsa=SPR&prid=newarrivals&icst=nonpr&crid=newarrivals-shopall&icca=btn' target='_self' className='banner-cta-link'>Shop Spring</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
