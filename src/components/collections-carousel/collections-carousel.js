@@ -1,42 +1,39 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-
+import PropTypes from 'prop-types';
+import Image from '../image/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './collections-carousel.css';
 
-const data = [
+const imageSizes = [
   {
-    'image': 'https://author-p124331-e1227315.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--7a8c759d-41ca-4eed-a7dc-3ea06dfb44de/sb_20240325_hp_card_VN_25thAnniversary_04__CB1711130086_.png?preferwebp=true&width=1600',
-    'title': 'Lost Water',
-    'description': 'New active-fit Performance Fishing Gear built for adventure-seeking anglers',
-    'link': '#',
-    'linkLabel': 'Shop Lost Water Collection'
+    imageWidth: '660px',
+    renditionName: 'web-optimized-large.webp',
+    size: '(min-width: 1000px) 660px'
   },
   {
-    'image': 'https://author-p124331-e1227315.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--7a8c759d-41ca-4eed-a7dc-3ea06dfb44de/sb_20240325_hp_card_VN_25thAnniversary_04__CB1711130086_.png?preferwebp=true&width=1600',
-    'title': 'Celebrate National Parks',
-    'description': 'Kick off National Park Week on April 20th with free entry and fresh gear.',
-    'link': '#',
-    'linkLabel': 'Shop Now'
+    imageWidth: '1000px',
+    renditionName: 'web-optimized-large.webp',
   },
   {
-    'image': 'https://author-p124331-e1227315.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--7a8c759d-41ca-4eed-a7dc-3ea06dfb44de/sb_20240325_hp_card_VN_25thAnniversary_04__CB1711130086_.png?preferwebp=true&width=1600',
-    'title': 'Fusion Performance',
-    'description': 'Omni-MAX combines advanced cushioning, stability, and traction.',
-    'link': '#',
-    'linkLabel': 'Shop Omni-Max'
+    imageWidth: '800px',
+    renditionName: 'web-optimized-large.webp',
   },
   {
-    'image': 'https://author-p124331-e1227315.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--7a8c759d-41ca-4eed-a7dc-3ea06dfb44de/sb_20240325_hp_card_VN_25thAnniversary_04__CB1711130086_.png?preferwebp=true&width=1600',
-    'title': 'Outdoor Heritage',
-    'description': 'Timeless classic styles reimagined for modern explorers.',
-    'link': '#',
-    'linkLabel': 'Shop Heritage Collection'
+    imageWidth: '600px',
+    renditionName: 'web-optimized-large.webp',
+  },
+  {
+    imageWidth: '412px',
+    renditionName: 'web-optimized-medium.webp',
+  },
+  {
+    size: '100vw',
   }
 ];
 
-const CollectionsCarousel = () => {
+const CollectionsCarousel = ({ content, config, component = true }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -50,25 +47,37 @@ const CollectionsCarousel = () => {
     afterChange: (slideIndex) => setCurrentSlide(slideIndex),
   };
 
+  const imageProps = {
+    'data-aue-prop': 'asset',
+    'data-aue-type': 'media',
+    'data-aue-label': 'Asset'
+  };
 
   return (
     <div className='coll-carousel'>
       <h2>Latest Collections</h2>
       <div className="carousel">
         <Slider {...settings}>
-          {data.map((item, i) => (
+          {content.collectionItems && content.collectionItems.map((item, i) => (
             <div className="carousel-item" key={i}>
-              <img src={item.image} alt={item.title} />
+              <Image imageProps={imageProps} asset={item.asset} alt={item.title} config={config} imageSizes={imageSizes} />
               <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <a href={item.link}>{item.linkLabel}</a>
+              <span dangerouslySetInnerHTML={{__html: item.description.html}} />
+              <a href={item.link}>{item.callToAction}</a>
             </div>
           ))}
         </Slider>
-    
+
       </div>
     </div>
   );
+};
+
+CollectionsCarousel.propTypes = {
+  content: PropTypes.object,
+  config: PropTypes.object,
+  context: PropTypes.object,
+  component: PropTypes.bool
 };
 
 export default CollectionsCarousel;

@@ -3,7 +3,7 @@
   padding-top: 4rem;
 }
 
-.cta-list .container {
+.cta-list .container.row {
   width: 100%;
 }
 
@@ -35,13 +35,13 @@
   }
 }
 
-.cta-list .container .cta {
+.cta-list .container.row .cta {
   background-color: var(--background-grey);
   border-color: var(--background-grey);
   border-radius: 3.125rem;
 }
 
-.cta-list .container .cta:hover {
+.cta-list .container.row .cta:hover {
   background-color: var(--hover-bg-grey);
 }
 
@@ -50,7 +50,7 @@
   flex-grow: 1;
 }
 
-.cta-list .container a {
+.cta-list .container.row a {
   width: 100%;
   height: 100%;
   line-height: .9;
@@ -59,4 +59,29 @@
   color: var(--color-black);
   font-size: .75rem;
   font-weight: 600;
+}
+
+.cta-list .container.columns {
+  display: flex;
+  gap: 10px;
+}
+
+.cta-list .container.columns .cta {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.cta-list .container.columns .cta:nth-of-type(1) {
+  background-color: var(--background-dark-blue);
+}
+
+.cta-list .container.columns .cta:nth-of-type(2) {
+  background-color: var(--background-red);
+}
+
+.cta-list .container.columns .cta a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
 }

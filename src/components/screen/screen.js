@@ -19,8 +19,6 @@ const Screen = () => {
 
   const { data, errorMessage } = useGraphQL(persistentQuery, { tags: `${context.startScreen}` });
 
-  // console.log('data: ', data);
-
   if (errorMessage) return;
 
   if (!data) return <Loading />;
