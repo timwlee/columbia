@@ -9,7 +9,6 @@ import Navigation from '../navigation';
 import Footer from '../footer';
 import { useGraphQL } from '../../utils/useGraphQL';
 import Loading from '../loading';
-import Banner from '../../components/banner';
 import './screen.css';
 
 const Screen = () => {
@@ -18,7 +17,7 @@ const Screen = () => {
  
   const persistentQuery = 'screen';
 
-  const { data, errorMessage } = useGraphQL(persistentQuery, { tags: 'shopbop:location/home' });
+  const { data, errorMessage } = useGraphQL(persistentQuery, { tags: `${context.startScreen}` });
 
   // console.log('data: ', data);
 
