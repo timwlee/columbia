@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Banner from '../components/banner/';
 import ImageList from '../components/imagelist';
 import ProductList from '../components/productlist';
+import Teaser from '../components/teaser/teaser';
 
 export const componentMapping = {
   Banner,
   ImageList,
-  ProductList
+  ProductList,
+  Teaser
 };
 
 const ModelManager = ({ content, dataAueProp }) => {
