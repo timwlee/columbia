@@ -8,6 +8,7 @@ import './imagelist.css';
 
 import CtaList from '../ctalist/ctalist';
 import ColumnLink from '../columnlink/columnlink';
+import CollectionsCarousel from '../collections-carousel/collections-carousel';
 
 const imageSizes = [
   {
@@ -51,6 +52,7 @@ const ImageList = ({ content, editorProps }) => {
       {/* Remove later */ } 
       <CtaList />
       <ColumnLink />
+      <CollectionsCarousel />
 
       <div className='imagelist' {...editorProps}>
         {mapJsonRichText(content?.headline?.json)}
