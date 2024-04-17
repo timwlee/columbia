@@ -57,14 +57,25 @@
 }
 
 .coll-carousel .slick-arrow {
-  background-color: var(--color-black);
+  background-color: var(--color-white);
   z-index: 1;
+  height: 75px;
+  width: 40px;
+  opacity: 0.4;
+}
+
+.coll-carousel .slick-arrow::before {
+  color: var(--color-black);
+}
+
+.coll-carousel .slick-arrow:hover {
+  opacity: 0.8;
 }
 
 .coll-carousel .slick-arrow.slick-prev {
-  left: 0;
+  left: -1px;
 }
 
 .coll-carousel .slick-arrow.slick-next {
-  right: 0;
+  right: -1px;
 }
