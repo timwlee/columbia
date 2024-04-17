@@ -79,7 +79,7 @@ const Navigation = () => {
         <div className='nav-options'>
           <div className='nav-search option'>
             <img src={SearchIcon} alt='Search Icon'/>
-            <input type='search' placeholder='Search' autoComplete='off' aria-label='Search' value=''/>
+            <input type='search' placeholder='Search' autoComplete='off' aria-label='Search'/>
           </div>
           <div className='option'>
             <img src={UserAccountIcon} alt='User Account Icon'/>

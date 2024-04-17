@@ -20,6 +20,8 @@ const Screen = () => {
 
   const { data, errorMessage } = useGraphQL(persistentQuery, { tags: 'shopbop:location/home' });
 
+  // console.log('data: ', data);
+
   if (errorMessage) return;
 
   if (!data) return <Loading />;

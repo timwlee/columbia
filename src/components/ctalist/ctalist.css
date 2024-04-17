@@ -1,0 +1,42 @@
+.cta-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust minmax value as needed */
+  gap: 10px; /* Adjust the gap between items as needed */
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+}
+
+.cta-list .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 100%;
+}
+
+.cta-list .container.row {
+  justify-content: center;
+
+}
+
+.cta-list .container.row a {
+  flex-basis: content;
+}
+
+.cta-list .container a {
+  width: 100%;
+  white-space: normal;
+  background-color: #eaebed;
+  border-color: #eaebed;
+  padding: .75rem 3rem;
+  line-height: .9;
+  border-radius: 3.125rem;
+  flex-basis: calc(100% / 6);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: .75rem;
+  font-weight: 600;
+}

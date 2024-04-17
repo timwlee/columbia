@@ -6,6 +6,8 @@ import { AppContext } from '../../utils/context';
 import { mapJsonRichText } from '../../utils/renderRichText';
 import './imagelist.css';
 
+import CtaList from '../ctalist/ctalist';
+
 const imageSizes = [
   {
     imageWidth: '1600px',
@@ -44,16 +46,21 @@ const ImageList = ({ content, editorProps }) => {
   };
 
   return (
-    <div className='imagelist' {...editorProps}>
-      {mapJsonRichText(content?.headline?.json)}
-      <span class='list-items'>
-        {content.images && content.images.map((image) => (
-          <div key={image._path} className='list-item'>
-            <Image imageProps={imageProps} asset={image} title={image.title} alt={image.description} imageSizes={imageSizes} />
-          </div>
-        ))}
-      </span>
-    </div>
+    <>
+      {/* Remove later */ } 
+      <CtaList />
+
+      <div className='imagelist' {...editorProps}>
+        {mapJsonRichText(content?.headline?.json)}
+        <span class='list-items'>
+          {content.images && content.images.map((image) => (
+            <div key={image._path} className='list-item'>
+              <Image imageProps={imageProps} asset={image} title={image.title} alt={image.description} imageSizes={imageSizes} />
+            </div>
+          ))}
+        </span>
+      </div>
+    </>
   );
 };
 
