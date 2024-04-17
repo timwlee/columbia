@@ -168,7 +168,7 @@
 .main-body {
   margin-top: var(--nav-height);
 }
-.main-body > div:not(.banner, .fifty-fifty) {
+.main-body > div:not(.banner, .fifty-fifty, .teaser) {
   max-width: 1440px;
   margin: 0 auto;
 }
