@@ -1,40 +1,60 @@
 .cta-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust minmax value as needed */
-  gap: 10px; /* Adjust the gap between items as needed */
   padding-bottom: 4rem;
   padding-top: 4rem;
 }
 
 .cta-list .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
   width: 100%;
 }
 
-.cta-list .container.row {
-  justify-content: center;
-
+.cta-list .container.multiple {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(25% - 1rem), 1fr)); /* Auto-fit columns with max 4 items per row */
+  gap: 1rem; /* Adjust spacing between items */
+  justify-items: center; /* Center items horizontally */
 }
 
-.cta-list .container.row a {
-  flex-basis: content;
+@media only screen and (min-width: 1130px) { 
+  .cta-list .container.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: nowrap; 
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1129px) { 
+  .cta-list .container.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+}
+
+.cta-list .container .cta {
+  background-color: var(--background-grey);
+  border-color: var(--background-grey);
+  border-radius: 3.125rem;
+}
+
+.cta-list .container .cta:hover {
+  background-color: var(--hover-bg-grey);
+}
+
+.cta-list .container.row .cta {
+  padding: .6rem 3rem;
+  flex-grow: 1;
 }
 
 .cta-list .container a {
   width: 100%;
-  white-space: normal;
-  background-color: #eaebed;
-  border-color: #eaebed;
-  padding: .75rem 3rem;
+  height: 100%;
   line-height: .9;
-  border-radius: 3.125rem;
-  flex-basis: calc(100% / 6);
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-decoration: none;
   color: var(--color-black);
   font-size: .75rem;

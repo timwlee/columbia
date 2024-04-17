@@ -7,6 +7,7 @@ import { mapJsonRichText } from '../../utils/renderRichText';
 import './imagelist.css';
 
 import CtaList from '../ctalist/ctalist';
+import ColumnLink from '../columnlink/columnlink';
 
 const imageSizes = [
   {
@@ -49,6 +50,7 @@ const ImageList = ({ content, editorProps }) => {
     <>
       {/* Remove later */ } 
       <CtaList />
+      <ColumnLink />
 
       <div className='imagelist' {...editorProps}>
         {mapJsonRichText(content?.headline?.json)}

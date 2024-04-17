@@ -15,7 +15,9 @@
 
   /* background color */
   --background-white: #fff;
-  --background-grey: #f5f5f5;
+  --background-grey: #eaebed;
+  --background-red: #9c183d;
+  --background-dark-blue: #0e223f;
   
   /* hover */
   --hover-bg-grey: #ccc;

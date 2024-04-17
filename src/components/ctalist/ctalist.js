@@ -1,17 +1,45 @@
 import React from 'react';
-
 import './ctalist.css';
 
+const data = [
+  {
+    'link': '#',
+    'text': 'Men'
+  },
+  {
+    'link': '#',
+    'text': 'Women'
+  },
+  {
+    'link': '#',
+    'text': 'Kids'
+  },
+  {
+    'link': '#',
+    'text': 'Shoes'
+  },
+  {
+    'link': '#',
+    'text': 'Accessories'
+  },
+  {
+    'link': '#',
+    'text': 'Bags & Gear'
+  },
+
+];
+
 const CtaList = () => {
+  const containerClass = data.length <= 6 ? 'container row' : 'container multiple';
+
   return (
     <div className='cta-list'>
-      <div className='container row'>
-        <a href='#'>Men</a>
-        <a href='#'>Women</a>
-        <a href='#'>Kids</a>
-        <a href='#'>Shoes</a>
-        <a href='#'>Accessories</a>
-        <a href='#'>Bags & Gear</a>
+      <div className={containerClass}>
+        {data.map((cta) => (
+          <div key={cta.text} className='cta'>
+            <a href={cta.link}>{cta.text}</a>
+          </div>
+        ))}
       </div>
     </div>
   );

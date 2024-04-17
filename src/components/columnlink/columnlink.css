@@ -1,0 +1,28 @@
+.column-link {
+
+}
+
+.column-link .container {
+  display: flex;
+  gap: 10px;
+}
+
+.column-link .col-link {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.column-link .col-link:nth-of-type(1) {
+  background-color: var(--background-dark-blue);
+}
+
+.column-link .col-link:nth-of-type(2) {
+  background-color: var(--background-red);
+}
+
+.column-link .col-link a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+}
