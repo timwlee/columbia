@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { mapJsonRichText } from '../../utils/renderRichText';
 import './productlist.css';
 
+import FiftyFifty from '../fifty-fifty/fifty-fifty';
+
 const imageSizes = [
   {
     imageWidth: '1600px',
@@ -74,19 +76,24 @@ const ProductList = ({ content, editorProps }) => {
   };
 
   return (
-    <div className='productlist' {...editorProps}>
-      <div className='product-list-title'>
-        {mapJsonRichText(content?.headline?.json)}
-        <button className="shop-all" aria-label="button">Shop All</button>
+    <>
+      {/* Remove later */}
+      <FiftyFifty />
+      
+      <div className='productlist' {...editorProps}>
+        <div className='product-list-title'>
+          {mapJsonRichText(content?.headline?.json)}
+          <button className="shop-all" aria-label="button">Shop All</button>
+        </div>
+        <div className='list-items'>
+          {products && content.products && content.products.map((product) => (
+            <div key={product} className='list-item'>
+              {retrieveProduct(product)}
+            </div>
+          ))}
+        </div>
       </div>
-      <div className='list-items'>
-        {products && content.products && content.products.map((product) => (
-          <div key={product} className='list-item'>
-            {retrieveProduct(product)}
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
