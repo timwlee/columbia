@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import { mapJsonRichText } from '../../utils/renderRichText';
 import './productlist.css';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import FiftyFifty from '../fifty-fifty/fifty-fifty';
 
 const imageSizes = [
@@ -37,6 +40,18 @@ const imageSizes = [
 
 const ProductList = ({ content, editorProps }) => {
   const [products, setProducts] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 2000,
+    afterChange: (slideIndex) => setCurrentSlide(slideIndex),
+  };
 
   const imageProps = {
     'data-aue-prop': 'asset',
@@ -66,34 +81,34 @@ const ProductList = ({ content, editorProps }) => {
       <React.Fragment>
         <img src={product.category_image} />
         <div className='list-item-content'> 
-          <span className='product-name'>{product.product_name}</span>
-          <span className='product-description'>{product.product_description}</span>
-          <span className='product-price'>{product.product_price}</span>
-          <button aria-label="button" className='product-favorite'></button>
+          <div className='product-name'>{product.product_name}</div>
+          {/* <div className='product-description'>{product.product_description}</div> */}
+          <div className='product-price'>${Number(product.product_price).toFixed(2)}</div>
         </div>
       </React.Fragment>
     );
   };
 
   return (
-    <>
+    <React.Fragment>
       {/* Remove later */}
       <FiftyFifty />
       
       <div className='productlist' {...editorProps}>
         <div className='product-list-title'>
           {mapJsonRichText(content?.headline?.json)}
-          <button className="shop-all" aria-label="button">Shop All</button>
         </div>
         <div className='list-items'>
-          {products && content.products && content.products.map((product) => (
-            <div key={product} className='list-item'>
-              {retrieveProduct(product)}
-            </div>
-          ))}
+          <Slider {...settings}>
+            {products && content.products && content.products.map((product) => (
+              <div key={product} className='list-item'>
+                {retrieveProduct(product)}
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
