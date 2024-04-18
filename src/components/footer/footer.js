@@ -4,7 +4,7 @@ import SearchIcon from '../../media/search-icon.svg';
 import './footer.css';
 const footerContent = [
   {
-    title: 'ShopBop',
+    title: 'Columbia',
     links: [
       {
         title: 'About Us',
@@ -101,7 +101,7 @@ const footerContent = [
         icon: '',
         _url: ''},
       {
-        title: 'Sign up for Shopbop emails',
+        title: 'Sign up for Columbia emails',
         icon: '',
         _url: ''
       }

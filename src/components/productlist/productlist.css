@@ -138,3 +138,11 @@
   width: 100%;
   object-fit: contain;
 }
+
+.productlist .slick-slide > div {
+  margin: 0 15px;
+}
+
+.productlist .slick-list {
+  margin: 0 -15px;
+}
