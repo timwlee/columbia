@@ -1,21 +1,90 @@
 import React from 'react';
-import SearchIcon from '../../media/search-icon.svg';
-
 import './footer.css';
+
 const footerContent = [
   {
-    title: 'Columbia',
+    title: '',
     links: [
       {
-        title: 'About Us',
+        title: '(800) 622-6953',
         _url: ''
       },
       {
-        title: 'Careers',
+        title: 'Customer Care',
         _url: ''
       },
       {
-        title: 'Affiliates',
+        title: 'Returns',
+        _url: ''
+      },
+      {
+        title: 'Order Status',
+        _url: ''
+      },
+      {
+        title: 'Warranty',
+        _url: ''
+      },
+      {
+        title: 'Product Care',
+        _url: ''
+      },
+      {
+        title: 'Accessibility Statement',
+        _url: ''
+      },
+      {
+        title: 'Website Feedback',
+        _url: ''
+      }
+    ]
+  },
+  {
+    title: 'About Us',
+    links: [
+      {
+        title: 'Our Story',
+        _url: ''
+      },
+      {
+        title: 'Tough Mother Outdoor Guide',
+        _url: ''
+      },
+      {
+        title: 'Columbia Greater Rewards',
+        _url: ''
+      },
+      {
+        title: 'Product Technology',
+        _url: ''
+      },
+      {
+        title: 'Corporate Responsibility',
+        _url: ''
+      },
+      {
+        title: 'Pro Program',
+        _url: ''
+      },
+      {
+        title: 'Product Testing',
+        _url: ''
+      },
+      {
+        title: 'Wholesale',
+        _url: ''
+      },
+      {
+        title: 'Investors & Press',
+        _url: ''
+      }
+    ]
+  },
+  {
+    title: 'Shop',
+    links: [
+      {
+        title: 'Find a store',
         _url: ''
       },
       {
@@ -23,86 +92,24 @@ const footerContent = [
         _url: ''
       },
       {
-        title: 'Get Amazon Prime Benefits',
+        title: 'Special Deals',
+        _url: ''
+      },
+      {
+        title: 'ID.me Verification',
+        _url: ''
+      },
+      {
+        title: 'Size Guides',
         _url: ''
       }
     ]
   },
   {
-    title: 'Help',
+    title: 'Connect With Us',
     links: [
       {
-        title: 'Return Policy',
-        _url: ''
-      },
-      {
-        title: 'Shipping Options',
-        _url: ''
-      },
-      {
-        title: 'Contact Us',
-        _url: ''
-      },
-    ]
-  },
-  {
-    title: 'Personalize',
-    links: [
-      {
-        title: 'My Account',
-        _url: ''
-      },
-      {
-        title: 'My Loyalty',
-        _url: ''
-      },
-      {
-        title: 'My Hearts',
-        _url: ''
-      },
-      {
-        title: 'My Wish List',
-        _url: ''
-      },
-      {
-        title: 'My Designers',
-        _url: ''
-      },
-      {
-        title: 'Shopping Preferences',
-        _url: ''
-
-      }
-    ]
-  },
-  {
-    title: 'Connect',
-    links: [
-      {
-        title: 'Get the App',
-        icon: '',
-        _url: ''
-      },
-      {
-        title: 'TikTok',
-        icon: '',
-        _url: ''
-      },
-      {
-        title: 'Instagram',
-        icon: '',
-        _url: ''},
-      {
-        title: 'Facebook',
-        icon: '',
-        _url: ''},
-      {
-        title: 'Pinterest',
-        icon: '',
-        _url: ''},
-      {
-        title: 'Sign up for Columbia emails',
-        icon: '',
+        title: 'Subscribe and be the first to hear about new products, sales, and more.',
         _url: ''
       }
     ]
@@ -131,13 +138,32 @@ const Footer = () => {
         )}
       </div>
       <div className='footer-copyright'>
-        <span>
-          © 1999-2024 BOP LLC. All Rights Reserved.
-        </span>
+        <div>United States</div>
+        <div>
+          © 2024 Columbia Sportswear Company. All rights reserved.
+        </div>
         <div className='copyright-links'>
-          <a>Privacy Notice</a>
-          <a>Conditions of Use</a>
-          <span className='link-icon'><img src={SearchIcon} /><a>Your Ads Privacy Choices</a></span>
+          <a href='#'>Terms of Use</a>
+          <a href='#'>Terms of Sale</a>
+          <a href='#'>Privacy Policy</a>
+          <a href='#'>Rewards Terms and Conditions</a>
+          <a href='#'>User Generated Content Terms of Use</a>
+          <a href='#'>Transparency in Supply Chain Statement</a>
+          <a href='#'>Do Not Sell or Share My Information</a>
+        </div>
+        <div className='contact-info'>
+          <div>
+            <span>Customer Care Phone:</span>
+            <span>M-F 5am-5pm PT (800) 622-6953</span>
+          </div>
+          <div>
+            <span>Customer Care Chat:</span>
+            <span>M-F 5am-8pm PT</span>
+          </div>
+          <div>
+            <span>Warranty Phone:</span>
+            <span>M-F 8am-4pm PT; (800) 622-6953 - Press 3</span>
+          </div>
         </div>
       </div>
 
