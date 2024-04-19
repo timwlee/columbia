@@ -4,9 +4,10 @@ import ReactHtmlParser from 'html-react-parser';
 import FiftyFiftyImage from '../../media/fifty-fifty-img.png';
 import OceanColumbiaImage from '../../media/ocean-conservancy-columbia.png';
 import './fifty-fifty.css';
+import { mapJsonRichText } from '../../utils/renderRichText';
 
 const data = [
-  { 
+  {
     image: FiftyFiftyImage
   },
   {
@@ -20,14 +21,14 @@ const data = [
 
 const MediaContainer = ({ image }) => (
   <div className='container media'>
-    <img src={image} alt='Image' width='' height=''/>
+    <img src={image} alt='Image' width='' height='' />
   </div>
 );
 
 const DescriptionContainer = ({ item }) => (
   <div className='container description'>
     <div className='wrapper'>
-      <img src={item.image} alt={item.title} width='' height=''/>
+      <img src={item.image} alt={item.title} width='' height='' />
       <h3>{item.title}</h3>
       <div>{ReactHtmlParser(item.description)}</div>
       <a href={item.link}>{item.linkLabel}</a>
@@ -43,16 +44,27 @@ DescriptionContainer.propTypes = {
   item: PropTypes.object
 };
 
-const FiftyFifty = () => (
-  <div className='fifty-fifty'>
-    {data.map((item, i) => (
-      i === 0 ? (
-        <MediaContainer key={i} image={item.image} />
-      ) : i === 1 ? (
-        <DescriptionContainer key={i} item={item}/>
-      ) : null
-    ))}
-  </div>
-);
+const FiftyFifty = ({ content, asset }) => {
+  return (
+    <div className='teaser fifty-fifty'>
+      <div className='container media'>
+        {asset}
+      </div>
+      <div className='container description'>
+        <div className='wrapper'>
+          {/* <img src={item.image} alt={item.title} width='' height='' /> */}
+          <h3>{content.title}</h3>
+          <div>{mapJsonRichText(content.description.json)}</div>
+          <a href={content.link._path}>{content.callToAction}</a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+FiftyFifty.propTypes = {
+  content: PropTypes.object,
+  asset: PropTypes.string
+};
 
 export default FiftyFifty;

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import { mapJsonRichText } from '../../utils/renderRichText';
+import { AppContext } from '../../utils/context';
 import './productlist.css';
 
 import 'slick-carousel/slick/slick.css';
@@ -41,6 +42,7 @@ const imageSizes = [
 const ProductList = ({ content, editorProps }) => {
   const [products, setProducts] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const context = useContext(AppContext);
 
   const settings = {
     dots: false,
@@ -60,14 +62,14 @@ const ProductList = ({ content, editorProps }) => {
   };
 
   useEffect(() => {
-    fetch('https://main--cif--jihuang-adobe.hlx.page/products.json?sheet=shopbot').then((res) => {
+    fetch(context.commerceSheet).then((res) => {
       if (res) {
         res.json().then((json) => setProducts(json.data));
       }
     }).catch((error) => {
       throw (error);
     });
-  }, []);
+  }, [context]);
 
   const findProduct = (product, sku) => {
     return product.product_sku === sku;
@@ -91,9 +93,6 @@ const ProductList = ({ content, editorProps }) => {
 
   return (
     <React.Fragment>
-      {/* Remove later */}
-      <FiftyFifty />
-      
       <div className='productlist' {...editorProps}>
         <div className='product-list-title'>
           {mapJsonRichText(content?.headline?.json)}

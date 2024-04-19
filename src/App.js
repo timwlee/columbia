@@ -22,6 +22,7 @@ function App() {
 
   if (data) {
     context.commerceSheet = data.configurationByPath.item.commerceSheet;
+    console.log(context.commerceSheet);
   }
 
   let {serviceURL} = context;
@@ -30,9 +31,9 @@ function App() {
   return (
     <HelmetProvider>
       <div className='App'>
-        <Helmet>
+        {/* <Helmet>
           <meta name='urn:adobe:aue:system:aemconnection' content={`aem:${serviceURL}`} />
-        </Helmet>
+        </Helmet> */}
         <BrowserRouter>
           <Routes>
             <Route exact={true} path={'/'} element={

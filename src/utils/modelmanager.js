@@ -33,7 +33,8 @@ const ModelManager = ({ content, dataAueProp }) => {
       return <Component editorProps={editorProps} content={content} />;
     else return <p>Neet to add {title} to ModelManager.</p>;
   } else {
-    return <p>content does not contain <pre>_model</pre></p>;
+    console.log(content);
+    return <p>content does not contain <pre>_model</pre>{content.__typename}</p>;
   }
 };
 

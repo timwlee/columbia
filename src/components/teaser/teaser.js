@@ -8,6 +8,7 @@ import { AppContext } from '../../utils/context';
 import { TextWithPlaceholders } from '../../utils/placeholders';
 import LinkManager from '../../utils/LinkManager';
 import './teaser.css';
+import FiftyFifty from '../fifty-fifty';
 
 const imageSizes = [
   {
@@ -88,6 +89,30 @@ const Teaser = ({ content, config, component = true }) => {
       return (<Image imageProps={imageProps} asset={content.asset} alt={content.title} config={config} imageSizes={content.style === 'hero' ? imageSizesHero : imageSizes} />);
   };
 
+  const hero = () => {
+    return (<div className='wrapper'>
+      {renderAsset(content)}
+      <div className='content-container'>
+        <div className='content-column'>
+          <div className='main-content'>
+            {content.title && content.style === 'hero' && (
+              <h1 data-aue-prop='title' data-aue-type='text' data-aue-label='Title'>{content.title}</h1>
+            )}
+            {content.preTitle && content.style === 'featured' && (
+              <h5 data-aue-prop='preTitle' data-aue-type='text' data-aue-label='Pre-Title'>{content.preTitle}</h5>
+            )}
+            {content.description && (
+              <p data-aue-prop='description' data-aue-type='text' data-aue-label='Description'><TextWithPlaceholders>{content.description.plaintext}</TextWithPlaceholders></p>
+            )}
+            {content.callToAction && content.link && (
+              <Link to={LinkManager(content.link._path, config, context)}
+                data-aue-type='reference' data-aue-prop='callToActionLink' data-aue-label='Call to Action' className='teaser-cta-link'>{content.callToAction}</Link>
+            )} </div>
+        </div>
+      </div>
+    </div>);
+  };
+
 
   const editorProps = {
     'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/master`,
@@ -97,32 +122,11 @@ const Teaser = ({ content, config, component = true }) => {
   };
 
   if (component) editorProps['data-aue-behavior'] = 'component';
+
+  console.log(content.style);
+  if(content && content.style === 'hero') return <div className={`teaser ${content.style}`} {...editorProps}>{hero()}</div>;
+  if(content && content.style === 'fifty-fifty') return <FiftyFifty asset={renderAsset(content)} content={content}/>;
   
-  return (
-    <div className='teaser' {...editorProps}>
-      <div className='wrapper'>
-        {renderAsset(content)}
-        <div className='content-container'>
-          <div className='content-column'>
-            <div className='main-content'>
-              {content.title && content.style === 'hero' && (
-                <h1 data-aue-prop='title' data-aue-type='text' data-aue-label='Title'>{content.title}</h1>
-              )}
-              {content.preTitle && content.style === 'featured' && (
-                <h5 data-aue-prop='preTitle' data-aue-type='text' data-aue-label='Pre-Title'>{content.preTitle}</h5>
-              )}
-              {content.description && (
-                <p data-aue-prop='description' data-aue-type='text' data-aue-label='Description'><TextWithPlaceholders>{content.description.plaintext}</TextWithPlaceholders></p>
-              )}
-              {content.callToAction && content.link && (
-                <Link to={LinkManager(content.callToActionLink._path, config, context)}
-                  data-aue-type='reference' data-aue-prop='callToActionLink' data-aue-label='Call to Action' className='button'>{content.callToAction}</Link>
-              )} </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 };
 
 Teaser.propTypes = {
@@ -133,3 +137,18 @@ Teaser.propTypes = {
 };
 
 export default Teaser;
+
+/***
+ * 
+ * const FiftyFifty = () => (
+  <div className='fifty-fifty'>
+    {data.map((item, i) => (
+      i === 0 ? (
+        <MediaContainer key={i} image={item.image} />
+      ) : i === 1 ? (
+        <DescriptionContainer key={i} item={item}/>
+      ) : null
+    ))}
+  </div>
+);
+ */
